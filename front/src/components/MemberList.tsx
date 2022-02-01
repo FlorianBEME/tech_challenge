@@ -1,27 +1,32 @@
 import React from "react";
 
-type Props = {};
+type Props = {
+  memberList: { member_name: string; id: number }[];
+  allDelete: Function;
+  deleteById: Function;
+};
 
-export default function MemberList({}: Props) {
+export default function MemberList({
+  memberList,
+  allDelete,
+  deleteById,
+}: Props) {
   return (
-    <>
+    <div className="containter-list-crews">
       <h2>Membres de l'équipage</h2>
+      <button onClick={() => allDelete()}>Tout supprimer</button>
       <section className="member-list">
-        <div className="member-item">
-          Elefthdzdd zdzzdd zddzdzdzddzzzdzddzdzdzdzddzddzdzddzzeria
-        </div>
-        <div className="member-item">Genndzddzdz zdzdadios</div>
-        <div className="member-item">Lysimachos</div>
-        <div className="member-item">Eleftheria</div>
-        <div className="member-item">Gdzzddzzddennadios</div>
-        <div className="member-item">Lysimachos</div>
-        <div className="member-item">Eleftheria</div>
-        <div className="member-item">Gendzdz dzd zz dzdznadios</div>
-        <div className="member-item">Lysimachos</div>
-        <div className="member-item">Eleftheria</div>
-        <div className="member-item">Gennadios</div>
-        <div className="member-item">Lysimachos</div>
+        {memberList.map((el) => {
+          return (
+            <div key={el.id} className="member-item">
+              {el.member_name}
+              <span className="cross-item" onClick={() => deleteById(el.id)}>
+                X
+              </span>
+            </div>
+          );
+        })}
       </section>
-    </>
+    </div>
   );
 }
