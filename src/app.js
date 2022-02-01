@@ -12,7 +12,6 @@ const router = require("./routes/index.routes");
 app.use(cors());
 app.use("/api", router);
 app.use("/*", (_, res) => {
-  console.log("test");
   res.sendFile(path.join(__dirname, "../front/build/index.html"));
 });
 
